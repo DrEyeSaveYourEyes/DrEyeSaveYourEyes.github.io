@@ -1,7 +1,6 @@
 (async () => {
   const webcam = new Webcam(document.getElementById("camera"), "user", document.getElementById("camera-canvas"));
   const photoContainer = document.getElementById("photo-container");
-  await webcam.start();
   document.getElementById("flip-camera-button").addEventListener("click", async () => {
     webcam.flip();
     await webcam.start();
@@ -12,4 +11,5 @@
     img.setAttribute("src", photo);
     photoContainer.appendChild(img);
   });
+  await webcam.start();
 })();
