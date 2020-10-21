@@ -1,7 +1,7 @@
 {
   "settings": {
     "name": "My Site",
-    "currentPage": "index.html",
+    "currentPage": "cataract-info.html",
     "theme": {
       "name": "mobirise5",
       "title": "Mobirise 5",
@@ -46,7 +46,7 @@
       }
     ],
     "uniqCompNum": 37,
-    "versionPublish": "5.2.0",
+    "versionPublish": "5.1.4",
     "imageResize": true,
     "screenshot": "screenshot.png",
     "favicon": false,
