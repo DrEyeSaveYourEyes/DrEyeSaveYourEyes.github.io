@@ -1,8 +1,6 @@
-body {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px;
-}
-#webcam-container > canvas {
+#camera-video {
 	max-width: 100%;
+}
+#camera-video.flipped {
+	transform: scaleX(-1);
 }
