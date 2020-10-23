@@ -4,3 +4,6 @@
 #camera-video.flipped {
 	transform: scaleX(-1);
 }
+#container.loaded > #loading-content, #container.loading > #loaded-content {
+	display: none !important;
+}
