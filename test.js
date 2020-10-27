@@ -7,7 +7,7 @@
 	const cameraSelect = document.getElementById("camera-select");
 	const cameraFlipSwitch = document.getElementById("camera-flip-switch")
 	const cameraVideo = document.getElementById("camera-video");
-	const cameraControlTabClassList = document.getElementById("tabs1-11_tab1").classList;
+	const cameraControlTabClassList = document.querySelector(".camera-tab").classList;
 
 	function clearChildNodes(element) {
 		for (let c = element.firstChild; c !== null; c = element.firstChild) {
@@ -45,7 +45,7 @@
 			const devices = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === "videoinput");
 			if (devices.length === 0) {
 				delete cameraVideo.dataset.deviceId;
-				tab1ClassList.add("no-camera");
+				cameraControlTabClassList.add("no-camera");
 			}
 			else {
 				let isVideoDevicePresent = false;
@@ -62,7 +62,7 @@
 				if (isVideoDevicePresent === false) {
 					await streamCamera(devices[0].deviceId);
 				}
-				tab1ClassList.remove("no-camera");
+				cameraControlTabClassList.remove("no-camera");
 			}
 		}
 		catch (e) {
