@@ -15,16 +15,20 @@
 		}
 	}
 
-	async function streamCamera(deviceId) {
-		if (deviceId === "") {
-			return;
-		}
-		const mediaStream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: deviceId } } });
+	function stopCamera() {
 		if (cameraVideo.srcObject !== null) {
 			for (const track of cameraVideo.srcObject.getTracks()) {
 				track.stop();
 			}
 		}
+	}
+
+	async function streamCamera(deviceId) {
+		if (deviceId === "") {
+			return;
+		}
+		const mediaStream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: deviceId } } });
+		stopCamera();
 		cameraVideo.srcObject = mediaStream;
 		cameraVideo.dataset.deviceId = deviceId;
 		await cameraVideo.play();
@@ -72,5 +76,6 @@
 
 	navigator.mediaDevices.addEventListener("devicechange", updateDeviceList);
 
-	await updateDeviceList();
+	document.querySelector("upload-tab-link").addEventListener("click", stopCamera);
+	document.querySelector("camera-tab-link").addEventListener("click", updateDeviceList);
 })();
