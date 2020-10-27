@@ -88,23 +88,19 @@
                             <div class="d-flex flex-column justify-content-center align-items-center w-100">
                                 <p id="camera-message">正在取得攝影機資訊...</p>
                                 <div id="camera-controls" class="d-flex flex-column justify-content-center align-items-center w-100">
-                                    <div class="form-row align-items-center">
+                                    <div class="input-group align-items-center">
+                                        <select id="camera-select" class="custom-select"></select>
                                         <div class="col-auto">
-                                            <select id="camera-select" class="custom-select"></select>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="form-check mb-2">
+                                            <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" id="camera-flip-switch"/>
                                                 <label class="form-check-label" for="camera-flip-switch">翻轉</label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div class="mt-3">
                                         <video id="camera-video"></video>
                                     </div>
-                                    <div class="form-row align-items-center">
-                                        <button id="photo-taking-button" class="btn btn-primary" type="button">拍攝</button>
-                                    </div>
+                                    <button id="photo-taking-button" class="btn btn-primary" type="button">拍攝</button>
                                 </div>
                             </div>
                         </div>
