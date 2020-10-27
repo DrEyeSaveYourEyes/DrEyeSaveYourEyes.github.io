@@ -106,7 +106,7 @@
 	});
 
 	async function predict(imgObj) {
-		const url = URL.createObjectURL(imgObj)
+		const url = URL.createObjectURL(imgObj);
 		clearChildNodes(resultImageContainer);
 		const img = document.createElement("img");
 		img.setAttribute("src", url);
