@@ -20,6 +20,7 @@
 			for (const track of cameraVideo.srcObject.getTracks()) {
 				track.stop();
 			}
+			cameraVideo.srcObject = null;
 		}
 	}
 
