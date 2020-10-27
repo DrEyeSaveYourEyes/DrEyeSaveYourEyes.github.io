@@ -135,7 +135,7 @@
 		return canvas;
 	}
 
-	document.getElementById("photo-taking-button").addEventListener("click", async () => {
-		await predict(drawVideoToCanvas().toBlob());
+	document.getElementById("photo-taking-button").addEventListener("click", () => {
+		drawVideoToCanvas().toBlob(async (b) => await predict(b));
 	});
 })();
