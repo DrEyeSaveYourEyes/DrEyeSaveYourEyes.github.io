@@ -9,6 +9,7 @@
 	const cameraVideo = document.getElementById("camera-video");
 	const cameraControlTabClassList = document.querySelector(".camera-tab").classList;
 	const cameraMessage = document.getElementById("camera-message");
+	const resultContainerClassList = document.getElementById("result").classList;
 	const resultImageContainer = document.getElementById("result-image-container");
 	const activeResult = document.getElementById("active-result");
 
@@ -114,5 +115,6 @@
 		img.setAttribute("src", URL.createObjectURL(e.currentTarget.files[0]));
 		resultImageContainer.appendChild(img);
 		processResult(await model.predict(img));
+		resultContainerClassList.remove("d-none");
 	})
 })();
