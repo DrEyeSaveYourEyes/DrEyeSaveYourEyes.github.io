@@ -114,7 +114,7 @@
 		activeResult.setAttribute("class", (await model.predict(img))[0].probability < 0.5 ? "negative" : "positive");
 		URL.revokeObjectURL(url);
 		resultContainer.classList.remove("d-none");
-		resultContainer.scrollIntoView(true);
+		resultContainer.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 	}
 
 	document.getElementById("image-upload").addEventListener("change", async (e) => {
