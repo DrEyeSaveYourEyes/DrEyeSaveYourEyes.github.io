@@ -15,13 +15,10 @@
 		}
 	}
 
-	function stopCamera(setSrcObjectToNull = true) {
+	function stopCamera() {
 		if (cameraVideo.srcObject !== null) {
 			for (const track of cameraVideo.srcObject.getTracks()) {
 				track.stop();
-			}
-			if (setSrcObjectToNull === true) {
-				cameraVideo.srcObject = null;
 			}
 		}
 	}
@@ -31,7 +28,7 @@
 			return;
 		}
 		const mediaStream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: deviceId } } });
-		stopCamera(false);
+		stopCamera();
 		cameraVideo.srcObject = mediaStream;
 		cameraVideo.dataset.deviceId = deviceId;
 		await cameraVideo.play();
@@ -77,7 +74,11 @@
 		}
 	}
 
-	document.querySelector(".upload-tab-link").addEventListener("click", stopCamera);
+	document.querySelector(".upload-tab-link").addEventListener("click", () => {
+		stopCamera();
+		cameraVideo.srcObject = null;
+		delete cameraVideo.dataset.deviceId;
+	});
 	document.querySelector(".camera-tab-link").addEventListener("click", updateDeviceList);
 	navigator.mediaDevices.addEventListener("devicechange", () => {
 		if (cameraControlTabClassList.contains("active")) {
