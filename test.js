@@ -7,7 +7,7 @@
 	const cameraSelect = document.getElementById("camera-select");
 	const cameraFlipSwitch = document.getElementById("camera-flip-switch")
 	const cameraVideo = document.getElementById("camera-video");
-	const tab1ClassList = document.getElementById("tab1").classList;
+	const cameraControlTabClassList = document.getElementById("tabs1-11_tab1").classList;
 
 	function clearChildNodes(element) {
 		for (let c = element.firstChild; c !== null; c = element.firstChild) {

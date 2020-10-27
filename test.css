@@ -4,6 +4,6 @@
 #camera-video.flipped {
 	transform: scaleX(-1);
 }
-#test-container.loading > #loaded-content, #test-container:not(.loading) > #loading-content, #tab1.no-camera > #camera-controls, #tab1:not(.no-camera) > #no-camera-found {
+#test-container.loading > #loaded-content, #test-container:not(.loading) > #loading-content, #tabs1-11_tab1.no-camera > #camera-controls, #tabs1-11_tab1:not(.no-camera) > #no-camera-found {
 	display: none !important;
 }
