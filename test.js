@@ -74,8 +74,11 @@
 		}
 	}
 
-	navigator.mediaDevices.addEventListener("devicechange", updateDeviceList);
-
 	document.querySelector("upload-tab-link").addEventListener("click", stopCamera);
 	document.querySelector("camera-tab-link").addEventListener("click", updateDeviceList);
+	navigator.mediaDevices.addEventListener("devicechange", () => {
+		if (cameraControlTabClassList.contains("active")) {
+			updateDeviceList();
+		}
+	});
 })();
