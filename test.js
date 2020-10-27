@@ -43,12 +43,23 @@
 		cameraVideo.classList.toggle("flipped");
 	});
 
-	async function updateDeviceList() {
+	async function ensureCameraPermission() {
 		try {
+			if ((await navigator.permissions.query({ name: "camera" })).state === "granted") {
+				return;
+			}
+		}
+		catch (e) {
 			const permissionTestDevice = await navigator.mediaDevices.getUserMedia({ video: true });
 			for (const track of permissionTestDevice.getTracks()) {
 				track.stop();
 			}
+		}
+	}
+
+	async function updateDeviceList() {
+		try {
+			await ensureCameraPermission();
 			clearChildNodes(cameraSelect);
 			const devices = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === "videoinput");
 			if (devices.length === 0) {
