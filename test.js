@@ -105,16 +105,37 @@
 		}
 	});
 
-	function processResult(results) {
-		activeResult.setAttribute("class", results[0].probability < 0.5 ? "negative" : "positive");
+	async function predict(imgObj) {
+		const url = URL.createObjectURL(imgObj)
+		clearChildNodes(resultImageContainer);
+		const img = document.createElement("img");
+		img.setAttribute("src", url);
+		resultImageContainer.appendChild(img);
+		activeResult.setAttribute("class", (await model.predict(img))[0].probability < 0.5 ? "negative" : "positive");
+		resultContainerClassList.remove("d-none");
+		URL.revokeObjectURL(url);
+		location.hash = "#result";
 	}
 
 	document.getElementById("image-upload").addEventListener("change", async (e) => {
-		clearChildNodes(resultImageContainer);
-		const img = document.createElement("img");
-		img.setAttribute("src", URL.createObjectURL(e.currentTarget.files[0]));
-		resultImageContainer.appendChild(img);
-		processResult(await model.predict(img));
-		resultContainerClassList.remove("d-none");
-	})
+		await predict(e.currentTarget.files[0]);
+	});
+
+	function drawVideoToCanvas() {
+		const canvas = document.createElement("canvas");
+		canvas.width = cameraVideo.videoWidth;
+		canvas.height = cameraVideo.videoHeight;
+		const context = canvas.getContext("2d");
+		context.drawImage(cameraVideo, 0, 0, cameraVideo.videoWidth, cameraVideo.videoHeight);
+		if (cameraVideo.classList.contains("flipped")) {
+			context.translate(cameraVideo.videoWidth, 0);
+			context.scale(-1, 1);
+			context.drawImage(canvas, 0, 0);
+		}
+		return canvas;
+	}
+
+	document.getElementById("photo-taking-button").addEventListener("click", async () => {
+		await predict(drawVideoToCanvas().toBlob());
+	});
 })();
