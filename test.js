@@ -50,8 +50,7 @@
 			}
 		}
 		catch (e) {}
-		const permissionTestDevice = await navigator.mediaDevices.getUserMedia({ video: true });
-		for (const track of permissionTestDevice.getTracks()) {
+		for (const track of (await navigator.mediaDevices.getUserMedia({ video: true })).getTracks()) {
 			track.stop();
 		}
 	}
