@@ -9,6 +9,8 @@
 	const cameraVideo = document.getElementById("camera-video");
 	const cameraControlTabClassList = document.querySelector(".camera-tab").classList;
 	const cameraMessage = document.getElementById("camera-message");
+	const resultImageContainer = document.getElementById("result-image-container");
+	const activeResult = document.getElementById("active-result");
 
 	function clearChildNodes(element) {
 		for (let c = element.firstChild; c !== null; c = element.firstChild) {
@@ -93,10 +95,24 @@
 		cameraVideo.srcObject = null;
 		delete cameraVideo.dataset.deviceId;
 	});
+
 	document.querySelector(".camera-tab-link").addEventListener("click", updateDeviceList);
+
 	navigator.mediaDevices.addEventListener("devicechange", () => {
 		if (cameraControlTabClassList.contains("active")) {
 			updateDeviceList();
 		}
 	});
+
+	function processResult(results) {
+		activeResult.setAttribute("class", results[0].probability < 0.5 ? "negative" : "positive");
+	}
+
+	document.getElementById("image-upload").addEventListener("change", async (e) => {
+		clearChildNodes(resultImageContainer);
+		const img = document.createElement("img");
+		img.setAttribute("src", URL.createObjectURL(e.currentTarget.files[0]));
+		resultImageContainer.appendChild(img);
+		processResult(await model.predict(img));
+	})
 })();

@@ -4,6 +4,6 @@
 #camera-video.flipped {
 	transform: scaleX(-1);
 }
-#test-container.loading > #loaded-content, #test-container:not(.loading) > #loading-content, .camera-tab.no-camera #camera-controls, .camera-tab:not(.no-camera) #camera-message {
+#test-container.loading > #loaded-content, #test-container:not(.loading) > #loading-content, .camera-tab.no-camera #camera-controls, .camera-tab:not(.no-camera) #camera-message, #active-result.negative > #positive-result, #active-result.positive > #negative-result {
 	display: none !important;
 }
