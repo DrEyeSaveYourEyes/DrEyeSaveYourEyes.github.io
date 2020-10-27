@@ -9,7 +9,7 @@
 	const cameraVideo = document.getElementById("camera-video");
 	const cameraControlTabClassList = document.querySelector(".camera-tab").classList;
 	const cameraMessage = document.getElementById("camera-message");
-	const resultContainerClassList = document.getElementById("result").classList;
+	const resultContainer = document.getElementById("result");
 	const resultImageContainer = document.getElementById("result-image-container");
 	const activeResult = document.getElementById("active-result");
 
@@ -112,9 +112,9 @@
 		img.setAttribute("src", url);
 		resultImageContainer.appendChild(img);
 		activeResult.setAttribute("class", (await model.predict(img))[0].probability < 0.5 ? "negative" : "positive");
-		resultContainerClassList.remove("d-none");
 		URL.revokeObjectURL(url);
-		location.hash = "#result";
+		resultContainer.classList.remove("d-none");
+		resultContainer.scrollIntoView(true);
 	}
 
 	document.getElementById("image-upload").addEventListener("change", async (e) => {
