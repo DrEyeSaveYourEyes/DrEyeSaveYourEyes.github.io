@@ -65,7 +65,7 @@
 
     
     <div id="test-container" class="container loading">
-        <div id="loading-content" class="d-flex justify-content-center align-items-center mbr-section-title mb-0 mbr-fonts-style display-2">
+        <div id="loading-content" class="d-flex justify-content-center align-items-center mbr-section-title mbr-fonts-style display-2">
             <div class="mr-4"><strong>載入中</strong></div>
             <div class="spinner-border" role="status"></div>
         </div>
@@ -91,22 +91,27 @@
                             </div>
                         </div>
                         <div id="tab1" class="tab-pane" role="tabpanel">
-                            <div class="form-row align-items-center">
-                                <div class="col-auto">
-                                    <select id="camera-select" class="custom-select"></select>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="checkbox" id="camera-flip-switch">
-                                        <label class="form-check-label" for="camera-flip-switch">翻轉</label>
+                            <div id="no-camera-found" class="form-row align-items-center">
+                                <p>找不到鏡頭</p>
+                            </div>
+                            <div id="camera-controls">
+                                <div class="form-row align-items-center">
+                                    <div class="col-auto">
+                                        <select id="camera-select" class="custom-select"></select>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="camera-flip-switch">
+                                            <label class="form-check-label" for="camera-flip-switch">翻轉</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row align-items-center">
-                                <video id="camera-video"></video>
-                            </div>
-                            <div class="form-row align-items-center">
-                                <button id="photo-taking-button" class="btn btn-primary" type="button">拍攝</button>
+                                <div class="form-row align-items-center">
+                                    <video id="camera-video"></video>
+                                </div>
+                                <div class="form-row align-items-center">
+                                    <button id="photo-taking-button" class="btn btn-primary" type="button">拍攝</button>
+                                </div>
                             </div>
                         </div>
                     </div>
