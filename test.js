@@ -8,6 +8,7 @@
 	const cameraFlipSwitch = document.getElementById("camera-flip-switch")
 	const cameraVideo = document.getElementById("camera-video");
 	const cameraControlTabClassList = document.querySelector(".camera-tab").classList;
+	const cameraMessage = document.getElementById("camera-message");
 
 	function clearChildNodes(element) {
 		for (let c = element.firstChild; c !== null; c = element.firstChild) {
@@ -50,6 +51,7 @@
 			if (devices.length === 0) {
 				delete cameraVideo.dataset.deviceId;
 				cameraControlTabClassList.add("no-camera");
+				cameraMessage.textContent = "找不到攝影機";
 			}
 			else {
 				let isVideoDevicePresent = false;
@@ -70,7 +72,7 @@
 			}
 		}
 		catch (e) {
-			console.error(e);
+			cameraMessage.textContent = e instanceof NotAllowedError ? "請允許本網站存取攝影機" : e.message;
 		}
 	}
 
