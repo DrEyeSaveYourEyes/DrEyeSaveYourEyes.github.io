@@ -91,13 +91,21 @@
 		}
 	}
 
-	document.querySelector(".upload-tab-link").addEventListener("click", () => {
+	document.querySelector(".upload-tab-link").addEventListener("click", e => {
+		if (e.currentTarget.classList.contains("active")) {
+			return;
+		}
 		stopCamera();
 		cameraVideo.srcObject = null;
 		delete cameraVideo.dataset.deviceId;
 	});
 
-	document.querySelector(".camera-tab-link").addEventListener("click", updateDeviceList);
+	document.querySelector(".camera-tab-link").addEventListener("click", e => {
+		if (e.currentTarget.classList.contains("active")) {
+			return;
+		}
+		updateDeviceList();
+	});
 
 	navigator.mediaDevices.addEventListener("devicechange", () => {
 		if (cameraControlTabClassList.contains("active")) {
