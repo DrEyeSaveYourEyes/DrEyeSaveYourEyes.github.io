@@ -17,9 +17,8 @@
 	}
 
 	function stopCamera() {
-		const srcObj = cameraVideo.srcObject;
-		if (srcObj !== null) {
-			for (const track of srcObj.getTracks()) {
+		if (cameraVideo.srcObject !== null) {
+			for (const track of cameraVideo.srcObject.getTracks()) {
 				track.stop();
 			}
 		}
@@ -46,7 +45,7 @@
 
 	async function updateDeviceList() {
 		try {
-			await navigator.mediaDevices.getUserMedia({ video: true });
+			// await navigator.mediaDevices.getUserMedia({ video: true });
 			clearChildNodes(cameraSelect);
 			const devices = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === "videoinput");
 			if (devices.length === 0) {
