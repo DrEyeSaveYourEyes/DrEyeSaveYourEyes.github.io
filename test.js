@@ -45,9 +45,8 @@
 
 	async function updateDeviceList() {
 		try {
-			// await navigator.mediaDevices.getUserMedia({ video: true });
 			clearChildNodes(cameraSelect);
-			const devices = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === "videoinput");
+			const devices = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === "videoinput" && d.deviceId !== "" && d.label !== "");
 			if (devices.length === 0) {
 				delete cameraVideo.dataset.deviceId;
 				cameraControlTabClassList.add("no-camera");
@@ -72,7 +71,7 @@
 			}
 		}
 		catch (e) {
-			cameraMessage.textContent = e.name === "NotAllowedError" ? "請允許本網站存取攝影機" : e.message;
+			cameraMessage.textContent = e.message;
 		}
 	}
 
