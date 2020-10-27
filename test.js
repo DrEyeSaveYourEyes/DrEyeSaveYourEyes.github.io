@@ -72,7 +72,7 @@
 			}
 		}
 		catch (e) {
-			cameraMessage.textContent = e instanceof NotAllowedError ? "請允許本網站存取攝影機" : e.message;
+			cameraMessage.textContent = e.name === "NotAllowedError" ? "請允許本網站存取攝影機" : e.message;
 		}
 	}
 
