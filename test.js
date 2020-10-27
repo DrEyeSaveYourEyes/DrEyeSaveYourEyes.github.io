@@ -17,8 +17,9 @@
 	}
 
 	function stopCamera() {
-		if (cameraVideo.srcObject !== null) {
-			for (const track of cameraVideo.srcObject.getTracks()) {
+		const srcObj = cameraVideo.srcObject;
+		if (srcObj !== null) {
+			for (const track of srcObj.getTracks()) {
 				track.stop();
 			}
 		}
