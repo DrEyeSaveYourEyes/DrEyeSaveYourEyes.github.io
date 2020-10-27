@@ -15,12 +15,14 @@
 		}
 	}
 
-	function stopCamera() {
+	function stopCamera(setSrcObjectToNull = true) {
 		if (cameraVideo.srcObject !== null) {
 			for (const track of cameraVideo.srcObject.getTracks()) {
 				track.stop();
 			}
-			cameraVideo.srcObject = null;
+			if (setSrcObjectToNull === true) {
+				cameraVideo.srcObject = null;
+			}
 		}
 	}
 
@@ -29,7 +31,7 @@
 			return;
 		}
 		const mediaStream = await navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: deviceId } } });
-		stopCamera();
+		stopCamera(false);
 		cameraVideo.srcObject = mediaStream;
 		cameraVideo.dataset.deviceId = deviceId;
 		await cameraVideo.play();
