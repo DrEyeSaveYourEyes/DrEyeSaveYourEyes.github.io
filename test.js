@@ -113,16 +113,24 @@
 		}
 	});
 
+	function convertObjectToDataURL(obj) {
+		const fileReader = new FileReader();
+		return new Promise(resolve => {
+			fileReader.addEventListener("load", () => {
+				resolve(fileReader.result);
+			});
+			fileReader.readAsDataURL(obj);
+		})
+	}
+
 	async function predict(imgObj) {
-		const url = URL.createObjectURL(imgObj);
 		clearChildNodes(resultImageContainer);
 		const img = document.createElement("img");
-		img.setAttribute("src", url);
+		img.setAttribute("src", await convertObjectToDataURL(imgObj));
 		resultImageContainer.appendChild(img);
 		const result = await model.predict(img);
 		console.log(result);
 		activeResult.setAttribute("class", result[0].probability < 0.5 ? "positive" : "negative");
-		// URL.revokeObjectURL(url);
 		resultContainer.classList.remove("d-none");
 		resultContainer.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 	}
