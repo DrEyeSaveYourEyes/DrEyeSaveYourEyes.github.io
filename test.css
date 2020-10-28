@@ -1,4 +1,4 @@
-#camera-video {
+#camera-video, #result-image-container > img {
 	max-width: 100%;
 }
 #camera-video.flipped {
