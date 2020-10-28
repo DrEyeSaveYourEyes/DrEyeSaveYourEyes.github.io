@@ -126,7 +126,7 @@
 	async function predict(imgObj) {
 		const url = URL.createObjectURL(imgObj);
 		clearChildNodes(resultImageContainer);
-		const img = await loadImage(imgObj);
+		const img = await loadImage(url);
 		resultImageContainer.appendChild(img);
 		const result = await model.predict(img);
 		console.log(result);
