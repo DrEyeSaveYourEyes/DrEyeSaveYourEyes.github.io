@@ -1,5 +1,6 @@
 #camera-video, #result-image-container > img {
 	max-width: 100%;
+	width: auto;
 }
 #camera-video.flipped {
 	transform: scaleX(-1);
