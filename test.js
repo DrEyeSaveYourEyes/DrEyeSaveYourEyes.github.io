@@ -12,6 +12,8 @@
 	const resultContainer = document.getElementById("result");
 	const resultImageContainer = document.getElementById("result-image-container");
 	const activeResult = document.getElementById("active-result");
+	const photoTakingButton = document.getElementById("photo-taking-button");
+	const countdownText = document.getElementById("countdown-text");
 
 	function clearChildNodes(element) {
 		for (let c = element.firstChild; c !== null; c = element.firstChild) {
@@ -154,7 +156,27 @@
 		return canvas;
 	}
 
-	document.getElementById("photo-taking-button").addEventListener("click", () => {
-		drawVideoToCanvas().toBlob(async (b) => await predict(b));
+	photoTakingButton.addEventListener("click", () => {
+		photoTakingButton.setAttribute("disabled", "");
+		countdownText.textContent = "3";
+		setTimeout(
+			() => {
+				countdownText.textContent = "2";
+			},
+			1000
+		);
+		setTimeout(
+			() => {
+				countdownText.textContent = "1";
+			},
+			2000
+		);
+		setTimeout(
+			() => {
+				drawVideoToCanvas().toBlob(async (b) => await predict(b));
+				photoTakingButton.removeAttribute("disabled");
+			},
+			3000
+		);
 	});
 })();

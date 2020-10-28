@@ -7,3 +7,19 @@
 #test-container.loading > #loaded-content, #test-container:not(.loading) > #loading-content, .camera-tab.no-camera #camera-controls, .camera-tab:not(.no-camera) #camera-message, #active-result.negative > #positive-result, #active-result.positive > #negative-result {
 	display: none !important;
 }
+#video-container {
+	position: relative;
+}
+#countdown-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	font-size: 120px;
+	color: white;
+	text-align: center;
+	display: grid;
+	place-items: center;
+}
