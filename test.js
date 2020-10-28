@@ -174,6 +174,7 @@
 		setTimeout(
 			() => {
 				drawVideoToCanvas().toBlob(async (b) => await predict(b));
+				countdownText.textContent = "";
 				photoTakingButton.removeAttribute("disabled");
 			},
 			3000
