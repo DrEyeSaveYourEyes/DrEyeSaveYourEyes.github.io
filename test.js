@@ -122,7 +122,7 @@
 		const result = await model.predict(img);
 		console.log(result);
 		activeResult.setAttribute("class", result[0].probability < 0.5 ? "positive" : "negative");
-		URL.revokeObjectURL(url);
+		// URL.revokeObjectURL(url);
 		resultContainer.classList.remove("d-none");
 		resultContainer.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 	}
