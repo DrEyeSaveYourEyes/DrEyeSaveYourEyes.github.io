@@ -118,11 +118,15 @@
 	function loadImage(imgUrl) {
 		return new Promise(resolve => {
 			const img = document.createElement("img");
-			const onLoad = () => {
-				img.removeEventListener("load", onLoad);
-				resolve(img);
-			};
-			img.addEventListener("load", onLoad);
+			img.addEventListener(
+				"load",
+				() => {
+					resolve(img);
+				},
+				{
+					once: true
+				}
+			);
 			img.setAttribute("src", imgUrl);
 		});
 	}
